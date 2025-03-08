@@ -1,38 +1,42 @@
-import { Tabs } from "expo-router";
-import { PaperProvider } from "react-native-paper";
-import { MaterialIcons } from "@expo/vector-icons";
+////This is a layout file for the tabs navigation. It defines the tabs and their icons inside the (tabs) folder.
 
-export default function Layout() {
+import { Tabs } from 'expo-router';
+import { MessageSquare, CircleUser as UserCircle2, Send } from 'lucide-react-native';
+
+export default function TabLayout() {
   return (
-    <PaperProvider>
-      <Tabs
-        screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: "#6200ea",
+    <Tabs
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: '#fff',
+          borderTopColor: '#E5E7EB',
+        },
+        tabBarActiveTintColor: '#6366F1',
+        tabBarInactiveTintColor: '#6B7280',
+        headerShown: false,
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Requests',
+          tabBarIcon: ({ color, size }) => <Send size={size} color={color} />,
         }}
-      >
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: "Home",
-            tabBarIcon: ({ color }) => <MaterialIcons name="home" size={24} color={color} />,
-          }}
-        />
-        <Tabs.Screen
-          name="profile"
-          options={{
-            title: "Profile",
-            tabBarIcon: ({ color }) => <MaterialIcons name="person" size={24} color={color} />,
-          }}
-        />
-        <Tabs.Screen
-          name="booking"
-          options={{
-            title: "Bookings",
-            tabBarIcon: ({ color }) => <MaterialIcons name="event" size={24} color={color} />,
-          }}
-        />
-      </Tabs>
-    </PaperProvider>
+      />
+      <Tabs.Screen
+        name="chats"
+        options={{
+          title: 'Chats',
+          tabBarIcon: ({ color, size }) => <MessageSquare size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, size }) => <UserCircle2 size={size} color={color} />,
+        }}
+      />
+    </Tabs>
   );
 }
